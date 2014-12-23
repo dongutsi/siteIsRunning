@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
 /*----------------------------------------------------------------------*\
  * Copyright (C) 2014  Danilo da Silva Maciel
  *
@@ -17,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
 \*----------------------------------------------------------------------*/
-
+"""
 import requests
 
 def traste(n):
