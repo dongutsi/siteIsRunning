@@ -21,14 +21,17 @@
 """
 import requests
 
+#função para impimir = na tela
 def traste(n):
     t = ''
     for i in range(0,n):
         t += '='
     print t+'\n'
 
-opcao = input("Tipo do site \n1 - http\n2 - https\n")
-
+# inicio
+# verifica o tipo de protocolo utizado http ou https
+traste(30)
+opcao = input("Tipo do site \n1 - http\n2 - https")
 if opcao == 1:
     site = 'http://'
 elif opcao == 2:
@@ -37,32 +40,42 @@ else:
     print 'Opcao invalida'
     exit()
 
-opcao = raw_input("Digite o site \n")
-
+opcao = raw_input("Digite o site ")
+traste(30)
 
 site += opcao
 
-print 'Site a ser pesquisado'
-traste(30)
-print site
+print 'Site a ser pesquisado \n '+site
 traste(30)
 opcao = input('1 - Continuar \n2 - Cancelar')
+traste(30)
 
 if opcao == 1:
+    traste(30)
     print 'Analisando, por favor aguarde...'
     #tenta realizar a conexão com o servidor
     try:
         #res irá conter os dados da requisição
         res = requests.get(site)
-
+        print res.status_code
         #verifica o status de retorno da requisição, se for 200 existe e pode continuar com a lógica
-        if(res.status_code == 200):
+        if res.status_code == 200:
+            print 'O endereço existe'
             traste(30)
-            print 'O site está funcionando'
+        elif res.status_code == 400:
+            print 'O endereço não está funcionando'
+            traste(30)
+        elif res.status_code == 403:
+            print 'Acesso proibido'
+            traste(30)
+        elif res.status_code == 404:
+            print 'A página não existe'
+            traste(30)
+        elif res.status_code == 500:
+            print 'Erro interno no servidor'
             traste(30)
         else:
-            traste(30)
-            print 'O site não está funcionando'
+            print 'Erro interno no servidor'
             traste(30)
     #se não existir o servidor
     except:
